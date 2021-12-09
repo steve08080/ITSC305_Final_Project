@@ -21,6 +21,8 @@ userids = ('111111', '845312', '682758', '853192')
 t = 8
 loggedIn = False
 lockedOut= False
+menu = 'login'
+option = 0
 
 def countdown():
     global t
@@ -70,39 +72,47 @@ def getid():
         return authenticate(id)
 
 def getmenu():
-    menu = 0
-    while menu is not 1 or 2 or 3:
-        menu = Key.loop()
-    if menu is 1:
-        readOutput()
-    elif menu is 2:
-        write()
-    elif menu is 3:
-        cloud()
+    global menu
+    global option
+    option = 0
+    if menu is 'home':
+        while option is not 1 or 2 or 3:
+            option = Key.loop()
+        if option is 1:
+            addressSelect()
+        elif option is 2:
+            addressSelect()
+        elif option is 3:
+            cloud()
 
 
 
 def login():
-    #screen.lcd_clear()
+    menu = 'login'
     screen.lcd_display_string(' '*16,line=2)
     inputThread = threading.Thread(None,getid)
     screen.lcd_display_string('Enter ID',line=1,pos=4)
-    #screen.lcd_display_string('60',line=1,pos=14)  # Placeholder
     inputThread.start()
     
 
 def welcome():
+    menu = 'welcome'
     screen.lcd_clear()
     screen.lcd_display_string('Welcome!',line=1,pos=4)
     screen.lcd_display_string('1.Rd 2.Wrt 3.Cld',line=2)
+    getmenu()
+
+
 def addressSelect():
     pass
 def readOutput():
-    pass
+    screen.lcd_clear()
+    screen.lcd_display_string('address')
 def write():
     pass
 def cloud():
-    pass
+    screen.lcd_clear()
+    screen.lcd_display_string('cloud')
 def success():
     pass
 def fail():
