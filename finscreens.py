@@ -125,7 +125,7 @@ def getmenu():
     option = None
 
     if menu is 'welcome':
-        options = {'1':addressSelect,'2':addressSelect,'3':cloud}
+        options = {'1':addressSelect,'2':addressSelect,'3':cloudScreens}
         while option is None:
             option = Key.loop()
             #option = input()
@@ -135,7 +135,7 @@ def getmenu():
             print('Bad option')
             return
 
-    elif menu is 'cloud':
+    elif menu is 'cloudScreens':
         while option is None:
             option = Key.loop()
             #option = input()
@@ -216,9 +216,9 @@ def scanScreen(address):
     return
 
 
-def cloud():
+def cloudScreens():
     global menu
-    menu = 'cloud'
+    menu = 'cloudScreens'
     screen.lcd_clear()
     screen.lcd_display_string('Cloud Operations')
     screen.lcd_display_string('1.Pblsh 2.Sbscrb',line=2)
