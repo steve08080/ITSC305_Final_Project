@@ -18,11 +18,10 @@ def on_message(client, userdata, message):
     print("Message payload: ", message.payload)
     print("Message QoS: ", message.qos)
 
-# **1 = send access_log
-# **2 = send data
+# **1 = send access_log email
+# **2 = send data email
 
 def getField(data):
-    thedata = input("Enter somethin: ")
     if data[0:1]=='**':
 	    return 'field2=' #alert
     elif data[0:1]=='>>':
@@ -30,14 +29,14 @@ def getField(data):
     else:
         return 'field1=' #data
 
-def getData(user,data):
+def getData(user,userid,data):
     if data=='>>1':
         return 'ATTEMPTED ACCESS'
     if data=='>>2':
-        logstr = str(user)+' LOGGED IN'
+        logstr = str(user)+' LOGGED IN' + str(userid)
         return logstr
     if data=='>>3':
-        logstr = str(user)+' LOGGED OUT'
+        logstr = str(user)+' LOGGED OUT' + str(userid)
         return logstr
     if data=='>>4':
         return 'FAILED ACCESS ATTEMPT'
@@ -45,7 +44,7 @@ def getData(user,data):
         return 0
 
 #connects to ThingSpeak+updates values until keyboard interrupt
-def cloudpub(user,data):
+def cloudpub(user,userid,data):
 	client = mqtt.Client(client_id=user, clean_session=True, userdata=None, protocol=mqtt.MQTTv311, transport="tcp")
 
 	client.on_connect = on_connect
@@ -58,7 +57,7 @@ def cloudpub(user,data):
 		print("Client disconnected. Trying to reconnect.")
 		client.reconnect()
 	#create publish info packet
-    WriteString = getData(user,data)
+    WriteString = getData(user,userid,data)
 	WriteField = getField(data)
     pub_topic = str(WriteField) + str(WriteString)
 	client.publish(MQTT_PUBLISH_TOPIC, pub_topic)
