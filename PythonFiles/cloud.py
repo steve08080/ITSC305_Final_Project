@@ -76,13 +76,13 @@ def cloudsub(user,data):
     return payload
 
 #INITIALIZATION/VARIABLE
-MQTT_USERNAME = 'ED0QNQgrHRw6CicuOggLOx8' #This is the ThingsSpeak's Author
-MQTT_PASSWD = '8qxnTOcr7SH+FeuBPw2LwwoN' #This is the MQTT API Key found under My Profile in ThingSpeak
-MQTT_HOST = "mqtt.thingspeak.com" #This is the ThingSpeak hostname
+MQTT_USERNAME = '' #This is the ThingsSpeak's Author
+MQTT_PASSWD = '' #This is the MQTT API Key found under My Profile in ThingSpeak
+MQTT_HOST = "mqtt3.thingspeak.com" #This is the ThingSpeak hostname
 MQTT_PORT = 1883 #Typical port # for MQTT protocol. If using TLS -> 8883
-CHANNEL_ID = "1600475" #Channel ID found on ThingSpeak website
-MQTT_READ_APIKEY = "VL80D7RG3043TO7C" # Read API Key
-MQTT_WRITE_APIKEY = "4N3CRBN1QP0RRFOD" # Write API Key
+CHANNEL_ID = '' #Channel ID found on ThingSpeak website
+MQTT_READ_APIKEY = '' # Read API Key
+MQTT_WRITE_APIKEY = '' # Write API Key
 MQTT_PUBLISH_TOPIC = "channels/" + CHANNEL_ID + "/publish/" + MQTT_WRITE_APIKEY
 MQTT_SUBSCRIBE_TOPIC = "channels/" + CHANNEL_ID + "/subscribe/fields/field2/" + MQTT_READ_APIKEY
 payload = None
