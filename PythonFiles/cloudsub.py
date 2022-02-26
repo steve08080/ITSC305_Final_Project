@@ -1,28 +1,13 @@
-"""
-Written by Lubos Kuzma
-March 2021
-
-Example of MQTT protocol Subscribe function
-This example uses MQTT v3.11 to subscribe to "Field 5" topic of my private ThingSpeak Channel
-Use this example as a template for Lab 5 and/or the final Project
-
-For this to work, you need to instal paho-mqtt library:
-sudo pip3 install paho-mqtt
-
-https://www.eclipse.org/paho/index.php?page=clients/python/docs/index.php
-
-"""
-
 from time import sleep
 import paho.mqtt.client as mqtt
 
-MQTT_CLIENT_ID = "ED0QNQgrHRw6CicuOggLOx8" # This is for your own client identification. Can be anything
-MQTT_USERNAME = "ED0QNQgrHRw6CicuOggLOx8" # "mwa0000024515092" #This is the ThingsSpeak's Author
-MQTT_PASSWD = "8qxnTOcr7SH+FeuBPw2LwwoN" # "L6BGKDU873UQ02OQ" #This is the MQTT API Key found under My Profile in ThingSpeak
+MQTT_CLIENT_ID = '' # This is for your own client identification. Can be anything
+MQTT_USERNAME = '' # "mwa0000024515092" #This is the ThingsSpeak's Author
+MQTT_PASSWD = '' #This is the MQTT API Key found under My Profile in ThingSpeak
 MQTT_HOST = "mqtt3.thingspeak.com" #This is the ThingSpeak hostname
 MQTT_PORT = 1883 #Typical port # for MQTT protocol. If using TLS -> 8883
-CHANNEL_ID = "1600475" #Channel ID found on ThingSpeak website
-MQTT_READ_APIKEY = "VL80D7RG3043TO7C" # Read API Key found under ThingSpeak Channel Settings
+CHANNEL_ID = '' #Channel ID found on ThingSpeak website
+MQTT_READ_APIKEY = '' # Read API Key found under ThingSpeak Channel Settings
 MQTT_SUBSCRIBE_TOPIC = "channels/" + CHANNEL_ID + "/subscribe/fields/field4"#/" + MQTT_READ_APIKEY
 
 received = None
@@ -51,13 +36,6 @@ This function will be called upon connection
 def on_connect(client, userdata, flags, rc):
     print("Connected ", rc)
 
-"""
-This function is used for logging. For this to work, you must uncomment the callback binding
-"""
-
-def on_log(client, userdata, level, buf):
-    print("log:", buf)
-
 def subloop():
     global received
     try:
@@ -70,10 +48,7 @@ def subloop():
         client.on_connect = on_connect
         client.on_message = on_message
         client.on_subscribe = on_subscribe
-        #client.on_unsubscribe = on_unsubscribe
-        #client.on_disconnect = on_disconnect
-        #client.on_publish = on_publish
-        #client.on_log = on_log
+
 
         """ Set the conneciton authentication. """
         client.username_pw_set(MQTT_USERNAME, password=MQTT_PASSWD)
