@@ -2,7 +2,7 @@ from time import sleep
 import paho.mqtt.client as mqtt
 
 MQTT_CLIENT_ID = '' # This is for your own client identification. Can be anything
-MQTT_USERNAME = '' # "mwa0000024515092" #This is the ThingsSpeak's Author
+MQTT_USERNAME = '' #This is the ThingsSpeak's Author
 MQTT_PASSWD = '' #This is the MQTT API Key found under My Profile in ThingSpeak
 MQTT_HOST = "mqtt3.thingspeak.com" #This is the ThingSpeak hostname
 MQTT_PORT = 1883 #Typical port # for MQTT protocol. If using TLS -> 8883
